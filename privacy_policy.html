@@ -5,10 +5,8 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Chính sách Bảo mật — SunBox Weather | Zerivon Labs</title>
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&display=swap"
-        rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
     <style>
-        /* ═══════════ RESET & BASE ═══════════ */
         *,
         *::before,
         *::after {
@@ -22,619 +20,478 @@
         }
 
         body {
-            font-family: 'Inter', -apple-system, sans-serif;
-            background: #0a0e1a;
-            color: #e2e8f0;
-            line-height: 1.8;
-            overflow-x: hidden;
-            min-height: 100vh;
+            font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+            background: #ffffff;
+            color: #1a1a2e;
+            line-height: 1.85;
+            -webkit-font-smoothing: antialiased;
         }
 
-        /* ═══════════ ANIMATED BACKGROUND ═══════════ */
-        .bg-gradient {
-            position: fixed;
-            inset: 0;
-            z-index: -2;
-            background: radial-gradient(ellipse at 20% 50%, #1a1a4e 0%, transparent 50%),
-                radial-gradient(ellipse at 80% 20%, #0c2a5e 0%, transparent 50%),
-                radial-gradient(ellipse at 50% 80%, #1a0a3e 0%, transparent 50%),
-                #0a0e1a;
-        }
-
-        .bg-grid {
-            position: fixed;
-            inset: 0;
-            z-index: -1;
-            background-image: linear-gradient(rgba(99, 102, 241, 0.03) 1px, transparent 1px),
-                linear-gradient(90deg, rgba(99, 102, 241, 0.03) 1px, transparent 1px);
-            background-size: 60px 60px;
-            animation: gridMove 20s linear infinite;
-        }
-
-        @keyframes gridMove {
-            to {
-                background-position: 60px 60px;
-            }
-        }
-
-        /* ═══════════ FLOATING PARTICLES ═══════════ */
-        .particles {
-            position: fixed;
-            inset: 0;
-            z-index: -1;
-            pointer-events: none;
-        }
-
-        .particle {
-            position: absolute;
-            border-radius: 50%;
-            animation: float linear infinite;
-            opacity: 0;
-        }
-
-        @keyframes float {
-            0% {
-                transform: translateY(100vh) scale(0);
-                opacity: 0;
-            }
-
-            10% {
-                opacity: 1;
-            }
-
-            90% {
-                opacity: 1;
-            }
-
-            100% {
-                transform: translateY(-10vh) scale(1);
-                opacity: 0;
-            }
-        }
-
-        /* ═══════════ CONTAINER ═══════════ */
-        .container {
-            max-width: 860px;
-            margin: 0 auto;
-            padding: 40px 24px 80px;
-            position: relative;
-        }
-
-        /* ═══════════ HERO HEADER ═══════════ */
-        .hero {
-            text-align: center;
-            padding: 80px 20px 60px;
-            position: relative;
-            perspective: 1000px;
-        }
-
-        .hero-shield {
-            width: 120px;
-            height: 120px;
-            margin: 0 auto 32px;
-            position: relative;
-            animation: shieldFloat 4s ease-in-out infinite;
-            transform-style: preserve-3d;
-        }
-
-        .hero-shield .shield-face {
-            width: 100%;
-            height: 100%;
-            background: linear-gradient(135deg, #6366f1, #8b5cf6, #a78bfa);
-            border-radius: 28px;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            font-size: 56px;
-            box-shadow: 0 20px 60px rgba(99, 102, 241, 0.4), 0 0 120px rgba(99, 102, 241, 0.15),
-                inset 0 1px 0 rgba(255, 255, 255, 0.15);
-            transform: rotateY(0deg) rotateX(0deg);
-            animation: shieldRotate 8s ease-in-out infinite;
-        }
-
-        @keyframes shieldFloat {
-
-            0%,
-            100% {
-                transform: translateY(0);
-            }
-
-            50% {
-                transform: translateY(-16px);
-            }
-        }
-
-        @keyframes shieldRotate {
-
-            0%,
-            100% {
-                transform: rotateY(0deg) rotateX(0deg);
-            }
-
-            25% {
-                transform: rotateY(8deg) rotateX(4deg);
-            }
-
-            50% {
-                transform: rotateY(-4deg) rotateX(-2deg);
-            }
-
-            75% {
-                transform: rotateY(6deg) rotateX(3deg);
-            }
-        }
-
-        .hero h1 {
-            font-size: clamp(2em, 5vw, 3em);
-            font-weight: 900;
-            background: linear-gradient(135deg, #c7d2fe 0%, #a5b4fc 30%, #818cf8 60%, #6366f1 100%);
-            -webkit-background-clip: text;
-            -webkit-text-fill-color: transparent;
-            background-clip: text;
-            margin-bottom: 12px;
-            animation: titleGlow 3s ease-in-out infinite alternate;
-        }
-
-        @keyframes titleGlow {
-            from {
-                filter: brightness(1);
-            }
-
-            to {
-                filter: brightness(1.2);
-            }
-        }
-
-        .hero .subtitle {
-            color: #94a3b8;
-            font-size: 1.05em;
-            font-weight: 400;
-            margin-bottom: 20px;
-        }
-
-        .hero .company {
-            color: #818cf8;
-            font-weight: 700;
-        }
-
-        .update-badge {
-            display: inline-flex;
-            align-items: center;
-            gap: 6px;
-            background: rgba(99, 102, 241, 0.15);
-            border: 1px solid rgba(99, 102, 241, 0.3);
-            padding: 6px 20px;
-            border-radius: 50px;
-            font-size: 0.85em;
-            color: #a5b4fc;
-            backdrop-filter: blur(8px);
-        }
-
-        .update-badge::before {
-            content: '🕐';
-        }
-
-        /* ═══════════ HIGHLIGHT BANNER ═══════════ */
-        .no-collect-banner {
-            margin: 48px 0;
-            background: linear-gradient(135deg, rgba(34, 197, 94, 0.1), rgba(16, 185, 129, 0.05));
-            border: 1px solid rgba(34, 197, 94, 0.25);
-            border-radius: 24px;
-            padding: 40px 32px;
-            text-align: center;
-            position: relative;
-            overflow: hidden;
-            animation: bannerPulse 4s ease-in-out infinite;
-        }
-
-        @keyframes bannerPulse {
-
-            0%,
-            100% {
-                box-shadow: 0 0 30px rgba(34, 197, 94, 0.05);
-            }
-
-            50% {
-                box-shadow: 0 0 50px rgba(34, 197, 94, 0.12);
-            }
-        }
-
-        .no-collect-banner .big-icon {
-            font-size: 3em;
-            margin-bottom: 12px;
-            animation: iconBounce 2s ease-in-out infinite;
-        }
-
-        @keyframes iconBounce {
-
-            0%,
-            100% {
-                transform: scale(1);
-            }
-
-            50% {
-                transform: scale(1.1);
-            }
-        }
-
-        .no-collect-banner h2 {
-            font-size: 1.3em;
-            font-weight: 800;
-            color: #4ade80;
-            letter-spacing: 0.5px;
-            margin-bottom: 8px;
-        }
-
-        .no-collect-banner p {
-            color: #86efac;
-            font-weight: 500;
-        }
-
-        .no-collect-banner strong {
-            color: #fff;
-        }
-
-        /* ═══════════ GLASS CARDS (SECTIONS) ═══════════ */
-        .glass-card {
-            background: rgba(15, 23, 42, 0.6);
-            border: 1px solid rgba(99, 102, 241, 0.12);
-            border-radius: 24px;
-            padding: 36px 32px;
-            margin-bottom: 28px;
-            backdrop-filter: blur(20px);
-            position: relative;
-            overflow: hidden;
-            transition: transform 0.4s cubic-bezier(.22, 1, .36, 1), box-shadow 0.4s ease, border-color 0.4s ease;
-            transform: translateY(40px);
-            opacity: 0;
-        }
-
-        .glass-card.visible {
-            transform: translateY(0);
-            opacity: 1;
-        }
-
-        .glass-card:hover {
-            transform: translateY(-4px) !important;
-            box-shadow: 0 20px 60px rgba(99, 102, 241, 0.12);
-            border-color: rgba(99, 102, 241, 0.3);
-        }
-
-        .glass-card::before {
-            content: '';
-            position: absolute;
+        /* ═══ NAV BAR ═══ */
+        .navbar {
+            position: sticky;
             top: 0;
-            left: 0;
-            right: 0;
-            height: 1px;
-            background: linear-gradient(90deg, transparent, rgba(99, 102, 241, 0.4), transparent);
+            z-index: 100;
+            background: rgba(255, 255, 255, 0.92);
+            backdrop-filter: blur(12px);
+            border-bottom: 1px solid #eef0f4;
+            padding: 16px 0;
         }
 
-        .glass-card .card-icon {
-            display: inline-flex;
-            align-items: center;
-            justify-content: center;
-            width: 48px;
-            height: 48px;
-            border-radius: 14px;
-            background: linear-gradient(135deg, rgba(99, 102, 241, 0.2), rgba(139, 92, 246, 0.1));
-            font-size: 24px;
-            margin-bottom: 20px;
-            box-shadow: 0 4px 16px rgba(99, 102, 241, 0.15);
-        }
-
-        /* ═══════════ TYPOGRAPHY ═══════════ */
-        .glass-card h2 {
-            font-size: 1.4em;
-            font-weight: 800;
-            color: #e2e8f0;
-            margin-bottom: 16px;
+        .navbar-inner {
+            max-width: 760px;
+            margin: 0 auto;
+            padding: 0 24px;
             display: flex;
             align-items: center;
-            gap: 12px;
+            justify-content: space-between;
         }
 
-        .glass-card h3 {
-            font-size: 1.05em;
+        .navbar-brand {
+            display: flex;
+            align-items: center;
+            gap: 10px;
             font-weight: 700;
-            color: #c7d2fe;
-            margin: 20px 0 10px;
-        }
-
-        .glass-card p {
-            color: #94a3b8;
-            margin-bottom: 12px;
-        }
-
-        .glass-card ul,
-        .glass-card ol {
-            margin: 12px 0 12px 20px;
-            color: #94a3b8;
-        }
-
-        .glass-card li {
-            margin-bottom: 10px;
-        }
-
-        .glass-card li strong {
-            color: #c7d2fe;
-        }
-
-        .glass-card a {
-            color: #818cf8;
+            font-size: 0.95em;
+            color: #1a1a2e;
             text-decoration: none;
-            border-bottom: 1px dashed rgba(129, 140, 248, 0.4);
+        }
+
+        .navbar-brand .logo {
+            width: 28px;
+            height: 28px;
+            border-radius: 7px;
+            background: linear-gradient(135deg, #3b44f6, #6c63ff);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            font-size: 14px;
+            font-weight: 800;
+        }
+
+        .navbar-links {
+            display: flex;
+            gap: 24px;
+        }
+
+        .navbar-links a {
+            color: #64748b;
+            font-size: 0.85em;
+            font-weight: 500;
+            text-decoration: none;
             transition: color 0.2s;
         }
 
-        .glass-card a:hover {
-            color: #a5b4fc;
+        .navbar-links a:hover {
+            color: #3b44f6;
         }
 
-        /* ═══════════ DATA TABLE — 3D ═══════════ */
-        .data-table-wrapper {
-            perspective: 800px;
-            margin: 20px 0;
+        /* ═══ MAIN ═══ */
+        .main {
+            max-width: 760px;
+            margin: 0 auto;
+            padding: 0 24px;
         }
 
+        /* ═══ HEADER ═══ */
+        .page-header {
+            padding: 72px 0 48px;
+            border-bottom: 1px solid #eef0f4;
+            margin-bottom: 48px;
+        }
+
+        .page-header .label {
+            display: inline-flex;
+            align-items: center;
+            gap: 6px;
+            font-size: 0.78em;
+            font-weight: 600;
+            text-transform: uppercase;
+            letter-spacing: 1.2px;
+            color: #3b44f6;
+            margin-bottom: 16px;
+        }
+
+        .page-header .label::before {
+            content: '';
+            width: 8px;
+            height: 8px;
+            border-radius: 50%;
+            background: #3b44f6;
+        }
+
+        .page-header h1 {
+            font-size: 2.4em;
+            font-weight: 700;
+            color: #0f172a;
+            letter-spacing: -0.5px;
+            margin-bottom: 16px;
+        }
+
+        .page-header .meta {
+            color: #94a3b8;
+            font-size: 0.9em;
+        }
+
+        .page-header .meta strong {
+            color: #64748b;
+            font-weight: 600;
+        }
+
+        /* ═══ COMMITMENT BLOCK ═══ */
+        .commitment {
+            background: #f0fdf4;
+            border: 1px solid #bbf7d0;
+            border-radius: 12px;
+            padding: 32px;
+            margin-bottom: 48px;
+        }
+
+        .commitment h3 {
+            font-size: 1em;
+            font-weight: 700;
+            color: #166534;
+            margin-bottom: 8px;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+
+        .commitment h3::before {
+            content: '✓';
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            width: 22px;
+            height: 22px;
+            border-radius: 50%;
+            background: #22c55e;
+            color: white;
+            font-size: 12px;
+            font-weight: 700;
+        }
+
+        .commitment p {
+            color: #15803d;
+            font-size: 0.92em;
+        }
+
+        /* ═══ TABLE OF CONTENTS ═══ */
+        .toc {
+            background: #f8fafc;
+            border: 1px solid #e2e8f0;
+            border-radius: 12px;
+            padding: 28px 32px;
+            margin-bottom: 48px;
+        }
+
+        .toc h4 {
+            font-size: 0.82em;
+            font-weight: 700;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            color: #94a3b8;
+            margin-bottom: 14px;
+        }
+
+        .toc ol {
+            list-style: none;
+            counter-reset: toc;
+        }
+
+        .toc li {
+            counter-increment: toc;
+            margin-bottom: 6px;
+        }
+
+        .toc li a {
+            color: #475569;
+            font-size: 0.9em;
+            font-weight: 500;
+            text-decoration: none;
+            transition: color 0.2s;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+
+        .toc li a::before {
+            content: counter(toc, decimal-leading-zero);
+            font-size: 0.78em;
+            font-weight: 700;
+            color: #94a3b8;
+            min-width: 20px;
+        }
+
+        .toc li a:hover {
+            color: #3b44f6;
+        }
+
+        /* ═══ SECTIONS ═══ */
+        .section {
+            margin-bottom: 48px;
+            scroll-margin-top: 80px;
+        }
+
+        .section h2 {
+            font-size: 1.3em;
+            font-weight: 700;
+            color: #0f172a;
+            margin-bottom: 20px;
+            padding-bottom: 12px;
+            border-bottom: 2px solid #f1f5f9;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .section h2 .num {
+            font-size: 0.7em;
+            font-weight: 700;
+            color: #3b44f6;
+            background: #eef2ff;
+            padding: 3px 10px;
+            border-radius: 6px;
+        }
+
+        .section h3 {
+            font-size: 1em;
+            font-weight: 600;
+            color: #334155;
+            margin: 24px 0 10px;
+        }
+
+        .section p {
+            color: #475569;
+            margin-bottom: 14px;
+            font-size: 0.95em;
+        }
+
+        .section ul {
+            margin: 12px 0 16px 20px;
+        }
+
+        .section li {
+            color: #475569;
+            margin-bottom: 10px;
+            font-size: 0.93em;
+        }
+
+        .section li strong {
+            color: #1e293b;
+        }
+
+        .section a {
+            color: #3b44f6;
+            text-decoration: none;
+            font-weight: 500;
+        }
+
+        .section a:hover {
+            text-decoration: underline;
+        }
+
+        /* ═══ DATA TABLE ═══ */
         .data-table {
             width: 100%;
-            border-collapse: separate;
-            border-spacing: 0;
-            border-radius: 16px;
+            border-collapse: collapse;
+            border: 1px solid #e2e8f0;
+            border-radius: 10px;
             overflow: hidden;
-            transform: rotateX(2deg);
-            transition: transform 0.5s ease;
-            box-shadow: 0 12px 40px rgba(0, 0, 0, 0.3);
-        }
-
-        .data-table-wrapper:hover .data-table {
-            transform: rotateX(0deg);
+            margin: 20px 0;
+            font-size: 0.9em;
         }
 
         .data-table th {
-            background: linear-gradient(135deg, #4338ca, #6366f1);
-            color: white;
-            padding: 14px 18px;
+            background: #f8fafc;
+            padding: 12px 16px;
             text-align: left;
             font-weight: 600;
-            font-size: 0.9em;
-            letter-spacing: 0.5px;
+            font-size: 0.82em;
             text-transform: uppercase;
+            letter-spacing: 0.5px;
+            color: #64748b;
+            border-bottom: 1px solid #e2e8f0;
         }
 
         .data-table td {
-            padding: 13px 18px;
-            border-bottom: 1px solid rgba(99, 102, 241, 0.08);
-            background: rgba(15, 23, 42, 0.4);
-            font-size: 0.92em;
-            transition: background 0.3s;
-        }
-
-        .data-table tr:hover td {
-            background: rgba(99, 102, 241, 0.08);
+            padding: 11px 16px;
+            border-bottom: 1px solid #f1f5f9;
+            color: #475569;
         }
 
         .data-table tr:last-child td {
             border-bottom: none;
         }
 
-        .badge {
-            display: inline-flex;
-            align-items: center;
-            gap: 4px;
-            padding: 3px 12px;
-            border-radius: 8px;
+        .data-table tr:hover td {
+            background: #fafbfc;
+        }
+
+        .tag {
+            display: inline-block;
+            padding: 2px 10px;
+            border-radius: 5px;
             font-size: 0.78em;
-            font-weight: 700;
-            letter-spacing: 0.5px;
+            font-weight: 600;
         }
 
-        .badge-green {
-            background: rgba(34, 197, 94, 0.15);
-            color: #4ade80;
+        .tag-green {
+            background: #f0fdf4;
+            color: #16a34a;
         }
 
-        .badge-red {
-            background: rgba(239, 68, 68, 0.15);
-            color: #f87171;
+        .tag-amber {
+            background: #fffbeb;
+            color: #d97706;
         }
 
-        .badge-yellow {
-            background: rgba(250, 204, 21, 0.15);
-            color: #facc15;
+        .tag-red {
+            background: #fef2f2;
+            color: #dc2626;
         }
 
-        /* ═══════════ PERMISSIONS GRID ═══════════ */
+        /* ═══ PERMISSIONS CARDS ═══ */
         .perm-grid {
             display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
-            gap: 16px;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 12px;
             margin: 16px 0;
         }
 
-        .perm-item {
-            background: rgba(99, 102, 241, 0.06);
-            border: 1px solid rgba(99, 102, 241, 0.12);
-            border-radius: 16px;
-            padding: 20px;
-            transition: transform 0.3s ease, box-shadow 0.3s ease, border-color 0.3s ease;
-            perspective: 600px;
+        .perm-card {
+            background: #f8fafc;
+            border: 1px solid #e2e8f0;
+            border-radius: 10px;
+            padding: 18px 20px;
+            transition: border-color 0.2s;
         }
 
-        .perm-item:hover {
-            transform: translateY(-4px) rotateX(2deg);
-            box-shadow: 0 12px 30px rgba(99, 102, 241, 0.12);
-            border-color: rgba(99, 102, 241, 0.3);
+        .perm-card:hover {
+            border-color: #cbd5e1;
         }
 
-        .perm-item code {
+        .perm-card code {
             display: inline-block;
-            background: rgba(99, 102, 241, 0.15);
-            color: #a5b4fc;
-            padding: 2px 10px;
-            border-radius: 6px;
+            background: #eef2ff;
+            color: #3b44f6;
+            padding: 2px 8px;
+            border-radius: 4px;
             font-size: 0.78em;
             font-weight: 600;
+            margin-bottom: 6px;
+        }
+
+        .perm-card .desc {
+            color: #64748b;
+            font-size: 0.85em;
+            line-height: 1.5;
             margin-bottom: 8px;
         }
 
-        .perm-item .perm-desc {
-            color: #94a3b8;
-            font-size: 0.88em;
-            margin: 6px 0;
-        }
-
-        /* ═══════════ NO-COLLECT LIST ═══════════ */
-        .no-list {
+        /* ═══ NOT-USED LIST ═══ */
+        .not-used {
             display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
-            gap: 10px;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 8px;
             margin: 16px 0;
         }
 
-        .no-item {
+        .not-used-item {
             display: flex;
             align-items: center;
-            gap: 10px;
-            background: rgba(239, 68, 68, 0.05);
-            border: 1px solid rgba(239, 68, 68, 0.1);
-            border-radius: 12px;
-            padding: 12px 16px;
+            gap: 8px;
+            padding: 10px 14px;
+            background: #fafafa;
+            border: 1px solid #f0f0f0;
+            border-radius: 8px;
+            font-size: 0.88em;
+            color: #94a3b8;
+        }
+
+        .not-used-item .x {
+            color: #e11d48;
+            font-weight: 700;
             font-size: 0.9em;
-            color: #f87171;
-            font-weight: 500;
-            transition: transform 0.2s, background 0.2s;
         }
 
-        .no-item:hover {
-            transform: scale(1.02);
-            background: rgba(239, 68, 68, 0.08);
+        /* ═══ CALLOUT ═══ */
+        .callout {
+            background: #fffbeb;
+            border-left: 3px solid #f59e0b;
+            border-radius: 0 8px 8px 0;
+            padding: 16px 20px;
+            margin: 16px 0;
+            font-size: 0.92em;
+            color: #92400e;
         }
 
-        /* ═══════════ CONTACT CARD ═══════════ */
-        .contact-card {
-            background: linear-gradient(135deg, rgba(99, 102, 241, 0.12), rgba(139, 92, 246, 0.06));
-            border: 1px solid rgba(99, 102, 241, 0.2);
-            border-radius: 20px;
-            padding: 28px 32px;
+        .callout strong {
+            color: #78350f;
+        }
+
+        /* ═══ CONTACT ═══ */
+        .contact-block {
+            background: #f8fafc;
+            border: 1px solid #e2e8f0;
+            border-radius: 12px;
+            padding: 24px 28px;
             margin: 20px 0;
-            display: flex;
-            flex-direction: column;
-            gap: 12px;
-            transition: transform 0.3s ease, box-shadow 0.3s ease;
-        }
-
-        .contact-card:hover {
-            transform: translateY(-2px);
-            box-shadow: 0 16px 40px rgba(99, 102, 241, 0.12);
         }
 
         .contact-row {
             display: flex;
             align-items: center;
             gap: 12px;
-            color: #c7d2fe;
-            font-weight: 500;
+            padding: 8px 0;
+            font-size: 0.93em;
+            color: #334155;
         }
 
-        .contact-row .icon {
-            font-size: 1.3em;
+        .contact-row .label-text {
+            color: #94a3b8;
+            font-weight: 500;
+            min-width: 70px;
         }
 
         .contact-row a {
-            color: #818cf8;
+            color: #3b44f6;
             font-weight: 600;
+            text-decoration: none;
         }
 
-        /* ═══════════ FOOTER ═══════════ */
+        .contact-row a:hover {
+            text-decoration: underline;
+        }
+
+        /* ═══ FOOTER ═══ */
         .footer {
-            margin-top: 60px;
-            padding-top: 40px;
-            border-top: 1px solid rgba(99, 102, 241, 0.12);
+            margin-top: 64px;
+            padding: 40px 0;
+            border-top: 1px solid #eef0f4;
             text-align: center;
-            color: #475569;
+            color: #94a3b8;
+            font-size: 0.85em;
         }
 
         .footer strong {
-            color: #818cf8;
+            color: #64748b;
         }
 
-        .footer .heart {
-            color: #f43f5e;
-            animation: heartbeat 1.5s ease-in-out infinite;
-            display: inline-block;
-        }
-
-        @keyframes heartbeat {
-
-            0%,
-            100% {
-                transform: scale(1);
-            }
-
-            50% {
-                transform: scale(1.2);
-            }
-        }
-
-        /* ═══════════ SCROLL PROGRESS ═══════════ */
-        .scroll-progress {
-            position: fixed;
-            top: 0;
-            left: 0;
-            height: 3px;
-            z-index: 999;
-            background: linear-gradient(90deg, #6366f1, #a78bfa, #c084fc);
-            width: 0%;
-            transition: width 0.1s;
-            box-shadow: 0 0 12px rgba(99, 102, 241, 0.5);
-        }
-
-        /* ═══════════ RESPONSIVE ═══════════ */
+        /* ═══ RESPONSIVE ═══ */
         @media (max-width: 600px) {
-            .container {
-                padding: 24px 16px 60px;
+            .page-header h1 {
+                font-size: 1.8em;
             }
 
-            .glass-card {
-                padding: 24px 20px;
-                border-radius: 18px;
-            }
-
-            .hero {
-                padding: 60px 16px 40px;
-            }
-
-            .hero-shield {
-                width: 90px;
-                height: 90px;
-            }
-
-            .hero-shield .shield-face {
-                font-size: 42px;
-                border-radius: 22px;
-            }
-
-            .no-collect-banner {
-                padding: 28px 20px;
-            }
-
-            .perm-grid {
+            .perm-grid,
+            .not-used {
                 grid-template-columns: 1fr;
             }
 
-            .no-list {
-                grid-template-columns: 1fr;
-            }
-
-            .data-table {
-                font-size: 0.85em;
-            }
-
-            .data-table th,
-            .data-table td {
-                padding: 10px 12px;
+            .navbar-links {
+                display: none;
             }
         }
     </style>
@@ -642,347 +499,310 @@
 
 <body>
 
-    <div class="scroll-progress" id="scrollProgress"></div>
-    <div class="bg-gradient"></div>
-    <div class="bg-grid"></div>
-
-    <!-- PARTICLES -->
-    <div class="particles" id="particles"></div>
-
-    <div class="container">
-
-        <!-- ═══════════ HERO ═══════════ -->
-        <div class="hero">
-            <div class="hero-shield">
-                <div class="shield-face">🛡️</div>
+    <!-- NAV -->
+    <nav class="navbar">
+        <div class="navbar-inner">
+            <a href="#" class="navbar-brand">
+                <span class="logo">Z</span>
+                Zerivon Labs
+            </a>
+            <div class="navbar-links">
+                <a href="#section-1">Giới thiệu</a>
+                <a href="#section-3">Vị trí</a>
+                <a href="#section-6">Quyền</a>
+                <a href="#section-11">Liên hệ</a>
             </div>
+        </div>
+    </nav>
+
+    <div class="main">
+
+        <!-- HEADER -->
+        <header class="page-header">
+            <div class="label">Pháp lý</div>
             <h1>Chính sách Bảo mật</h1>
-            <p class="subtitle">Ứng dụng <strong>SunBox Weather</strong> — Phát triển bởi <span class="company">Zerivon
-                    Labs</span></p>
-            <span class="update-badge">Cập nhật: 11 tháng 3, 2026</span>
+            <p class="meta">
+                Ứng dụng <strong>SunBox Weather</strong> · Cập nhật lần cuối: <strong>11 tháng 3, 2026</strong>
+            </p>
+        </header>
+
+        <!-- COMMITMENT -->
+        <div class="commitment">
+            <h3>Cam kết bảo mật</h3>
+            <p>SunBox Weather được thiết kế theo nguyên tắc <strong>"Privacy by Design"</strong>. Chúng tôi không thu
+                thập, không lưu trữ, và không chia sẻ bất cứ thông tin cá nhân nào của người dùng.</p>
         </div>
 
-        <!-- ═══════════ BANNER ═══════════ -->
-        <div class="no-collect-banner">
-            <div class="big-icon">🔒</div>
-            <h2>CHÚNG TÔI KHÔNG THU THẬP BẤT CỨ THÔNG TIN CÁ NHÂN NÀO</h2>
-            <p>SunBox Weather được thiết kế với nguyên tắc <strong>"Privacy by Design"</strong> — quyền riêng tư là ưu
-                tiên hàng đầu.</p>
+        <!-- TOC -->
+        <div class="toc">
+            <h4>Mục lục</h4>
+            <ol>
+                <li><a href="#section-1">Giới thiệu</a></li>
+                <li><a href="#section-2">Thông tin Chúng tôi không thu thập</a></li>
+                <li><a href="#section-3">Quyền truy cập Vị trí</a></li>
+                <li><a href="#section-4">Dữ liệu lưu trữ cục bộ</a></li>
+                <li><a href="#section-5">Dịch vụ bên thứ ba</a></li>
+                <li><a href="#section-6">Quyền ứng dụng</a></li>
+                <li><a href="#section-7">Bảo mật cho Trẻ em</a></li>
+                <li><a href="#section-8">Biện pháp Bảo mật</a></li>
+                <li><a href="#section-9">Quyền của Người dùng</a></li>
+                <li><a href="#section-10">Thay đổi Chính sách</a></li>
+                <li><a href="#section-11">Liên hệ</a></li>
+            </ol>
         </div>
 
-        <!-- ═══════════ 1. GIỚI THIỆU ═══════════ -->
-        <div class="glass-card">
-            <div class="card-icon">📋</div>
-            <h2>1. Giới thiệu</h2>
-            <p><strong>Zerivon Labs</strong> (sau đây gọi là "Chúng tôi") cam kết bảo vệ quyền riêng tư của người dùng
-                ("Bạn") khi sử dụng ứng dụng <strong>SunBox Weather</strong>. Chính sách này giải thích chi tiết cách
-                ứng dụng xử lý dữ liệu, quyền của Bạn, và các biện pháp bảo mật.</p>
+        <!-- 1. GIỚI THIỆU -->
+        <section class="section" id="section-1">
+            <h2><span class="num">01</span> Giới thiệu</h2>
+            <p><strong>Zerivon Labs</strong> (sau đây gọi là "Chúng tôi", "Công ty") cam kết bảo vệ quyền riêng tư của
+                người dùng ("Bạn") khi sử dụng ứng dụng <strong>SunBox Weather</strong> ("Ứng dụng"). Chính sách Bảo mật
+                này giải thích chi tiết cách Ứng dụng xử lý dữ liệu, quyền của Bạn, và các biện pháp bảo mật mà chúng
+                tôi áp dụng.</p>
             <p>Bằng việc tải về và sử dụng SunBox Weather, Bạn đồng ý với các điều khoản trong Chính sách Bảo mật này.
-                Nếu không đồng ý, vui lòng ngừng sử dụng Ứng dụng.</p>
-        </div>
+                Nếu Bạn không đồng ý, vui lòng ngừng sử dụng Ứng dụng.</p>
+        </section>
 
-        <!-- ═══════════ 2. KHÔNG THU THẬP ═══════════ -->
-        <div class="glass-card">
-            <div class="card-icon">🚫</div>
-            <h2>2. Thông tin Chúng tôi KHÔNG thu thập</h2>
-            <p>SunBox Weather <strong>KHÔNG</strong> thu thập, lưu trữ, theo dõi, hoặc chia sẻ bất cứ dữ liệu cá nhân
-                nào:</p>
-            <div class="data-table-wrapper">
-                <table class="data-table">
-                    <thead>
-                        <tr>
-                            <th>Loại dữ liệu</th>
-                            <th>Thu thập?</th>
-                            <th>Ghi chú</th>
-                        </tr>
-                    </thead>
-                    <tbody>
-                        <tr>
-                            <td>Họ tên, Ngày sinh</td>
-                            <td><span class="badge badge-green">✕ KHÔNG</span></td>
-                            <td>Không bao giờ yêu cầu</td>
-                        </tr>
-                        <tr>
-                            <td>Số điện thoại</td>
-                            <td><span class="badge badge-green">✕ KHÔNG</span></td>
-                            <td>Không yêu cầu đăng ký</td>
-                        </tr>
-                        <tr>
-                            <td>Địa chỉ Email</td>
-                            <td><span class="badge badge-green">✕ KHÔNG</span></td>
-                            <td>Không cần tài khoản</td>
-                        </tr>
-                        <tr>
-                            <td>Hình ảnh, Video</td>
-                            <td><span class="badge badge-green">✕ KHÔNG</span></td>
-                            <td>Không truy cập Camera</td>
-                        </tr>
-                        <tr>
-                            <td>Danh bạ</td>
-                            <td><span class="badge badge-green">✕ KHÔNG</span></td>
-                            <td>Không yêu cầu quyền</td>
-                        </tr>
-                        <tr>
-                            <td>Lịch sử cuộc gọi / Tin nhắn</td>
-                            <td><span class="badge badge-green">✕ KHÔNG</span></td>
-                            <td>Không truy cập</td>
-                        </tr>
-                        <tr>
-                            <td>Lịch sử duyệt web</td>
-                            <td><span class="badge badge-green">✕ KHÔNG</span></td>
-                            <td>Không theo dõi</td>
-                        </tr>
-                        <tr>
-                            <td>Thông tin thiết bị (IMEI)</td>
-                            <td><span class="badge badge-green">✕ KHÔNG</span></td>
-                            <td>Không thu thập mã ID</td>
-                        </tr>
-                        <tr>
-                            <td>Dữ liệu tài chính</td>
-                            <td><span class="badge badge-green">✕ KHÔNG</span></td>
-                            <td>App hoàn toàn miễn phí</td>
-                        </tr>
-                        <tr>
-                            <td>Dữ liệu sức khỏe</td>
-                            <td><span class="badge badge-green">✕ KHÔNG</span></td>
-                            <td>Không truy cập</td>
-                        </tr>
-                        <tr>
-                            <td>Lịch sử vị trí</td>
-                            <td><span class="badge badge-green">✕ KHÔNG</span></td>
-                            <td>Không ghi lại di chuyển</td>
-                        </tr>
-                        <tr>
-                            <td>Cookie / Mã theo dõi</td>
-                            <td><span class="badge badge-green">✕ KHÔNG</span></td>
-                            <td>Không sử dụng pixel/cookie</td>
-                        </tr>
-                    </tbody>
-                </table>
-            </div>
-        </div>
+        <!-- 2. KHÔNG THU THẬP -->
+        <section class="section" id="section-2">
+            <h2><span class="num">02</span> Thông tin Chúng tôi không thu thập</h2>
+            <p>SunBox Weather <strong>không</strong> thu thập, lưu trữ, theo dõi, hoặc chia sẻ bất cứ dữ liệu cá nhân
+                nào của Bạn. Cụ thể:</p>
+            <table class="data-table">
+                <thead>
+                    <tr>
+                        <th>Loại dữ liệu</th>
+                        <th>Thu thập?</th>
+                        <th>Ghi chú</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td>Họ tên, Ngày sinh</td>
+                        <td><span class="tag tag-green">Không</span></td>
+                        <td>Không bao giờ yêu cầu</td>
+                    </tr>
+                    <tr>
+                        <td>Số điện thoại</td>
+                        <td><span class="tag tag-green">Không</span></td>
+                        <td>Không yêu cầu đăng ký</td>
+                    </tr>
+                    <tr>
+                        <td>Địa chỉ Email</td>
+                        <td><span class="tag tag-green">Không</span></td>
+                        <td>Không cần tài khoản</td>
+                    </tr>
+                    <tr>
+                        <td>Hình ảnh, Video</td>
+                        <td><span class="tag tag-green">Không</span></td>
+                        <td>Không truy cập Camera / Thư viện</td>
+                    </tr>
+                    <tr>
+                        <td>Danh bạ</td>
+                        <td><span class="tag tag-green">Không</span></td>
+                        <td>Không yêu cầu quyền danh bạ</td>
+                    </tr>
+                    <tr>
+                        <td>Lịch sử cuộc gọi / Tin nhắn</td>
+                        <td><span class="tag tag-green">Không</span></td>
+                        <td>Không truy cập</td>
+                    </tr>
+                    <tr>
+                        <td>Lịch sử duyệt web</td>
+                        <td><span class="tag tag-green">Không</span></td>
+                        <td>Không theo dõi</td>
+                    </tr>
+                    <tr>
+                        <td>Thông tin thiết bị (IMEI, Serial)</td>
+                        <td><span class="tag tag-green">Không</span></td>
+                        <td>Không thu thập mã nhận dạng</td>
+                    </tr>
+                    <tr>
+                        <td>Dữ liệu tài chính / Thanh toán</td>
+                        <td><span class="tag tag-green">Không</span></td>
+                        <td>Ứng dụng hoàn toàn miễn phí</td>
+                    </tr>
+                    <tr>
+                        <td>Dữ liệu sức khỏe</td>
+                        <td><span class="tag tag-green">Không</span></td>
+                        <td>Không truy cập</td>
+                    </tr>
+                    <tr>
+                        <td>Lịch sử vị trí</td>
+                        <td><span class="tag tag-green">Không</span></td>
+                        <td>Không ghi lại lịch sử di chuyển</td>
+                    </tr>
+                    <tr>
+                        <td>Cookie / Mã theo dõi</td>
+                        <td><span class="tag tag-green">Không</span></td>
+                        <td>Không sử dụng cookie hay pixel</td>
+                    </tr>
+                </tbody>
+            </table>
+        </section>
 
-        <!-- ═══════════ 3. VỊ TRÍ ═══════════ -->
-        <div class="glass-card">
-            <div class="card-icon">📍</div>
-            <h2>3. Quyền truy cập Vị trí</h2>
-            <h3>⚡ Tại sao cần quyền vị trí?</h3>
-            <p>SunBox Weather yêu cầu vị trí <strong>DUY NHẤT</strong> để xác định tọa độ hiện tại, từ đó gửi yêu cầu
-                lấy dữ liệu thời tiết cho khu vực của Bạn.</p>
+        <!-- 3. VỊ TRÍ -->
+        <section class="section" id="section-3">
+            <h2><span class="num">03</span> Quyền truy cập Vị trí</h2>
+            <p>SunBox Weather yêu cầu quyền truy cập vị trí (GPS) để xác định tọa độ hiện tại của Bạn, từ đó cung cấp dữ
+                liệu thời tiết chính xác cho khu vực.</p>
 
-            <h3>3.1. Cách xử lý dữ liệu vị trí</h3>
+            <h3>3.1. Cách chúng tôi xử lý dữ liệu vị trí</h3>
             <ul>
-                <li><strong>Sử dụng tức thời:</strong> Tọa độ chỉ dùng ngay tại thời điểm mở app hoặc khi thông báo định
-                    kỳ gửi. Gửi trực tiếp tới API thời tiết để lấy kết quả.</li>
-                <li><strong>Không lưu trữ trên máy chủ:</strong> Chúng tôi <strong>KHÔNG</strong> có bất kỳ server nào.
-                    Tọa độ chỉ tồn tại trong RAM và bị xóa ngay sau khi nhận kết quả.</li>
-                <li><strong>Không theo dõi liên tục:</strong> Không ghi lại lịch sử di chuyển hay tạo hồ sơ vị trí.</li>
-                <li><strong>Không chia sẻ:</strong> Tọa độ chỉ gửi đến OpenWeatherMap để lấy dữ liệu dự báo.</li>
+                <li><strong>Sử dụng tức thời:</strong> Tọa độ chỉ sử dụng tại thời điểm mở ứng dụng hoặc khi thông báo
+                    thời tiết gửi, và được truyền trực tiếp tới API thời tiết để lấy kết quả.</li>
+                <li><strong>Không lưu trữ trên máy chủ:</strong> Zerivon Labs không vận hành bất kỳ máy chủ nào. Tọa độ
+                    chỉ tồn tại trong bộ nhớ tạm (RAM) và bị xóa ngay sau khi nhận kết quả.</li>
+                <li><strong>Không theo dõi liên tục:</strong> Ứng dụng không theo dõi vị trí trong nền, không ghi lại
+                    lịch sử di chuyển, không tạo hồ sơ vị trí.</li>
+                <li><strong>Không chia sẻ:</strong> Tọa độ chỉ được gửi đến OpenWeatherMap để lấy dữ liệu thời tiết.
+                </li>
             </ul>
 
-            <h3>3.2. Bạn có toàn quyền kiểm soát</h3>
+            <h3>3.2. Quyền kiểm soát của Bạn</h3>
             <ul>
-                <li>Bạn có thể <strong>từ chối</strong> quyền vị trí và thêm thành phố thủ công.</li>
+                <li>Bạn có thể <strong>từ chối</strong> quyền vị trí khi cài đặt và thêm thành phố thủ công.</li>
                 <li>Bạn có thể <strong>thu hồi</strong> quyền bất cứ lúc nào: <em>Cài đặt → Ứng dụng → SunBox Weather →
                         Quyền → Vị trí → Từ chối</em>.</li>
-                <li>Các tính năng khác (xem thành phố đã lưu, radar) vẫn hoạt động bình thường.</li>
+                <li>Các tính năng khác (xem thành phố đã lưu, bản đồ radar) vẫn hoạt động bình thường.</li>
             </ul>
-        </div>
+        </section>
 
-        <!-- ═══════════ 4. LƯU TRỮ CỤC BỘ ═══════════ -->
-        <div class="glass-card">
-            <div class="card-icon">💾</div>
-            <h2>4. Dữ liệu lưu trữ cục bộ</h2>
-            <p>SunBox Weather lưu một số thông tin <strong>cục bộ trên thiết bị</strong> (SharedPreferences):</p>
+        <!-- 4. CỤC BỘ -->
+        <section class="section" id="section-4">
+            <h2><span class="num">04</span> Dữ liệu lưu trữ cục bộ</h2>
+            <p>Ứng dụng lưu trữ một số thông tin <strong>cục bộ trên thiết bị</strong> (SharedPreferences) để cải thiện
+                trải nghiệm:</p>
             <ul>
-                <li><strong>Danh sách thành phố:</strong> Tên và tọa độ các thành phố Bạn đã lưu.</li>
-                <li><strong>Bộ nhớ đệm (Cache):</strong> Dữ liệu thời tiết gần nhất, hiển thị khi mất mạng.</li>
-                <li><strong>Cài đặt app:</strong> Trạng thái onboarding và tùy chọn cá nhân.</li>
-            </ul>
-            <p>⚠️ Toàn bộ dữ liệu chỉ lưu trên thiết bị, <strong>KHÔNG BAO GIỜ</strong> gửi đến Zerivon Labs hay bên thứ
-                ba. Gỡ app = xóa sạch dữ liệu.</p>
-        </div>
-
-        <!-- ═══════════ 5. BÊN THỨ BA ═══════════ -->
-        <div class="glass-card">
-            <div class="card-icon">🌐</div>
-            <h2>5. Dịch vụ bên thứ ba</h2>
-            <p>Ứng dụng dùng <strong>OpenWeatherMap API</strong> để lấy dữ liệu thời tiết. Khi gọi API, thông tin tọa độ
-                và tên thành phố sẽ được gửi. Xem <a href="https://openweathermap.org/privacy-policy"
-                    target="_blank">Chính sách của OpenWeatherMap</a>.</p>
-
-            <h3>5.1. Dịch vụ KHÔNG sử dụng</h3>
-            <div class="no-list">
-                <div class="no-item">❌ Google Analytics / Firebase</div>
-                <div class="no-item">❌ Facebook SDK / AppsFlyer</div>
-                <div class="no-item">❌ Google AdMob / Quảng cáo</div>
-                <div class="no-item">❌ Crashlytics / Sentry</div>
-                <div class="no-item">❌ In-App Purchase</div>
-                <div class="no-item">❌ Bất kỳ SDK theo dõi nào</div>
-            </div>
-        </div>
-
-        <!-- ═══════════ 6. QUYỀN ỨNG DỤNG ═══════════ -->
-        <div class="glass-card">
-            <div class="card-icon">🔑</div>
-            <h2>6. Quyền ứng dụng</h2>
-            <p>Tuân thủ nguyên tắc <strong>"Quyền tối thiểu"</strong> — chỉ yêu cầu đúng những gì cần thiết:</p>
-            <div class="perm-grid">
-                <div class="perm-item">
-                    <code>ACCESS_FINE_LOCATION</code>
-                    <div class="perm-desc">Xác định GPS chính xác để lấy thời tiết</div>
-                    <span class="badge badge-yellow">Tùy chọn</span>
-                </div>
-                <div class="perm-item">
-                    <code>ACCESS_COARSE_LOCATION</code>
-                    <div class="perm-desc">Vị trí gần đúng (mạng/Wi-Fi)</div>
-                    <span class="badge badge-yellow">Tùy chọn</span>
-                </div>
-                <div class="perm-item">
-                    <code>INTERNET</code>
-                    <div class="perm-desc">Kết nối tới API thời tiết</div>
-                    <span class="badge badge-red">Bắt buộc</span>
-                </div>
-                <div class="perm-item">
-                    <code>POST_NOTIFICATIONS</code>
-                    <div class="perm-desc">Thông báo thời tiết (Android 13+)</div>
-                    <span class="badge badge-yellow">Tùy chọn</span>
-                </div>
-            </div>
-        </div>
-
-        <!-- ═══════════ 7. TRẺ EM ═══════════ -->
-        <div class="glass-card">
-            <div class="card-icon">👶</div>
-            <h2>7. Bảo mật cho Trẻ em</h2>
-            <p>SunBox Weather không nhắm đến trẻ em dưới 13 tuổi. Vì app <strong>KHÔNG thu thập bất kỳ thông tin cá nhân
-                    nào</strong>, ứng dụng an toàn cho mọi lứa tuổi.</p>
-            <p>Nếu Bạn là phụ huynh và tin rằng con mình đã cung cấp thông tin cho chúng tôi, vui lòng liên hệ để chúng
-                tôi xử lý ngay.</p>
-        </div>
-
-        <!-- ═══════════ 8. BẢO MẬT ═══════════ -->
-        <div class="glass-card">
-            <div class="card-icon">🔐</div>
-            <h2>8. Biện pháp Bảo mật</h2>
-            <ul>
-                <li><strong>Mã hóa HTTPS (TLS 1.2+):</strong> Mọi kết nối đều được mã hóa hoàn toàn.</li>
-                <li><strong>API Key bảo vệ:</strong> Khóa API không tiết lộ trong mã nguồn công khai.</li>
-                <li><strong>Zero Server:</strong> Giao tiếp trực tiếp với API thời tiết, không qua server trung gian.
+                <li><strong>Danh sách thành phố đã lưu:</strong> Tên và tọa độ các thành phố Bạn theo dõi thời tiết.
                 </li>
-                <li><strong>Android Sandbox:</strong> Dữ liệu cục bộ lưu trong vùng nhớ riêng, không app khác truy cập
-                    được.</li>
+                <li><strong>Bộ nhớ đệm (Cache):</strong> Dữ liệu thời tiết gần nhất, hiển thị khi mất kết nối Internet.
+                </li>
+                <li><strong>Cài đặt ứng dụng:</strong> Trạng thái onboarding và các tùy chọn cá nhân hóa.</li>
             </ul>
-        </div>
-
-        <!-- ═══════════ 9. QUYỀN NGƯỜI DÙNG ═══════════ -->
-        <div class="glass-card">
-            <div class="card-icon">⚖️</div>
-            <h2>9. Quyền của Người dùng</h2>
-            <p>Theo GDPR, CCPA và Luật An ninh mạng Việt Nam:</p>
-            <ul>
-                <li><strong>Quyền được biết:</strong> Chúng tôi thu thập gì? → <strong>Không gì cả.</strong></li>
-                <li><strong>Quyền truy cập:</strong> Không có dữ liệu nào được thu thập → không có gì để truy cập.</li>
-                <li><strong>Quyền xóa:</strong> Gỡ cài đặt app = xóa toàn bộ dữ liệu cục bộ.</li>
-                <li><strong>Quyền từ chối:</strong> Toàn quyền từ chối quyền vị trí và thông báo.</li>
-                <li><strong>Quyền di chuyển dữ liệu:</strong> Danh sách thành phố thuộc về Bạn hoàn toàn.</li>
-            </ul>
-        </div>
-
-        <!-- ═══════════ 10. THAY ĐỔI ═══════════ -->
-        <div class="glass-card">
-            <div class="card-icon">📝</div>
-            <h2>10. Thay đổi Chính sách</h2>
-            <p>Chúng tôi có thể cập nhật chính sách này. Khi có thay đổi quan trọng:</p>
-            <ul>
-                <li>Ngày "Cập nhật" ở đầu trang sẽ thay đổi.</li>
-                <li>Nếu liên quan đến thu thập dữ liệu mới, chúng tôi sẽ thông báo và yêu cầu đồng ý trong app.</li>
-            </ul>
-        </div>
-
-        <!-- ═══════════ 11. LIÊN HỆ ═══════════ -->
-        <div class="glass-card">
-            <div class="card-icon">📬</div>
-            <h2>11. Liên hệ</h2>
-            <p>Có câu hỏi về Chính sách Bảo mật? Liên hệ chúng tôi:</p>
-            <div class="contact-card">
-                <div class="contact-row"><span class="icon">🏢</span> <strong>Công ty:</strong> Zerivon Labs</div>
-                <div class="contact-row"><span class="icon">📧</span> <strong>Email:</strong> <a
-                        href="mailto:Zerivonlabsteam@gmail.com">Zerivonlabs@gmail.com</a></div>
-                <div class="contact-row"><span class="icon">📱</span> <strong>Ứng dụng:</strong> SunBox Weather</div>
+            <div class="callout">
+                <strong>Lưu ý:</strong> Toàn bộ dữ liệu trên chỉ lưu trên thiết bị của Bạn và không bao giờ được gửi đến
+                Zerivon Labs hay bên thứ ba nào. Khi gỡ cài đặt ứng dụng, dữ liệu này bị xóa vĩnh viễn.
             </div>
-            <p>Cam kết phản hồi trong <strong>48 giờ</strong> kể từ khi nhận email.</p>
-        </div>
+        </section>
 
-        <!-- ═══════════ FOOTER ═══════════ -->
-        <div class="footer">
-            <p><strong>© 2026 Zerivon Labs</strong> — Mọi quyền được bảo lưu.</p>
-            <p>SunBox Weather được phát triển với <span class="heart">❤️</span> bởi <strong>Zerivon Labs</strong></p>
-            <p style="margin-top: 12px; font-size: 0.85em;">
-                <a href="mailto:Zerivonlabs@gmail.com"
-                    style="color: #818cf8; text-decoration: none;">Zerivonlabs@gmail.com</a>
-            </p>
-        </div>
+        <!-- 5. BÊN THỨ BA -->
+        <section class="section" id="section-5">
+            <h2><span class="num">05</span> Dịch vụ bên thứ ba</h2>
+            <p>SunBox Weather sử dụng <strong>OpenWeatherMap API</strong> (<a href="https://openweathermap.org"
+                    target="_blank">openweathermap.org</a>) để lấy dữ liệu thời tiết. Khi gọi API, tọa độ thành phố và
+                tên thành phố tìm kiếm được truyền tới OpenWeatherMap. Vui lòng tham khảo <a
+                    href="https://openweathermap.org/privacy-policy" target="_blank">Chính sách Bảo mật của
+                    OpenWeatherMap</a>.</p>
+
+            <h3>Dịch vụ không sử dụng</h3>
+            <div class="not-used">
+                <div class="not-used-item"><span class="x">✕</span> Google Analytics / Firebase</div>
+                <div class="not-used-item"><span class="x">✕</span> Facebook SDK / AppsFlyer</div>
+                <div class="not-used-item"><span class="x">✕</span> Google AdMob / Quảng cáo</div>
+                <div class="not-used-item"><span class="x">✕</span> Crashlytics / Sentry</div>
+                <div class="not-used-item"><span class="x">✕</span> In-App Purchase</div>
+                <div class="not-used-item"><span class="x">✕</span> Bất kỳ SDK theo dõi nào</div>
+            </div>
+        </section>
+
+        <!-- 6. QUYỀN -->
+        <section class="section" id="section-6">
+            <h2><span class="num">06</span> Quyền ứng dụng</h2>
+            <p>Tuân thủ nguyên tắc <strong>"Principle of Least Privilege"</strong> — chỉ yêu cầu quyền tối thiểu cần
+                thiết:</p>
+            <div class="perm-grid">
+                <div class="perm-card">
+                    <code>ACCESS_FINE_LOCATION</code>
+                    <div class="desc">Xác định GPS chính xác để lấy dữ liệu thời tiết khu vực</div>
+                    <span class="tag tag-amber">Tùy chọn</span>
+                </div>
+                <div class="perm-card">
+                    <code>ACCESS_COARSE_LOCATION</code>
+                    <div class="desc">Vị trí gần đúng qua mạng di động hoặc Wi-Fi</div>
+                    <span class="tag tag-amber">Tùy chọn</span>
+                </div>
+                <div class="perm-card">
+                    <code>INTERNET</code>
+                    <div class="desc">Kết nối tới API thời tiết để tải dữ liệu dự báo</div>
+                    <span class="tag tag-red">Bắt buộc</span>
+                </div>
+                <div class="perm-card">
+                    <code>POST_NOTIFICATIONS</code>
+                    <div class="desc">Gửi thông báo thời tiết định kỳ (Android 13+)</div>
+                    <span class="tag tag-amber">Tùy chọn</span>
+                </div>
+            </div>
+        </section>
+
+        <!-- 7. TRẺ EM -->
+        <section class="section" id="section-7">
+            <h2><span class="num">07</span> Bảo mật cho Trẻ em</h2>
+            <p>SunBox Weather không nhắm mục tiêu đến trẻ em dưới 13 tuổi. Vì ứng dụng không thu thập bất kỳ thông tin
+                cá nhân nào, ứng dụng an toàn cho mọi lứa tuổi sử dụng. Nếu Bạn là phụ huynh và có thắc mắc, vui lòng
+                liên hệ qua email bên dưới.</p>
+        </section>
+
+        <!-- 8. BẢO MẬT -->
+        <section class="section" id="section-8">
+            <h2><span class="num">08</span> Biện pháp Bảo mật</h2>
+            <ul>
+                <li><strong>Giao tiếp mã hóa:</strong> Mọi kết nối sử dụng giao thức HTTPS (TLS 1.2+), dữ liệu truyền
+                    tải được mã hóa hoàn toàn.</li>
+                <li><strong>Bảo vệ API Key:</strong> Khóa API được bảo vệ và không tiết lộ trong mã nguồn công khai.
+                </li>
+                <li><strong>Zero Server:</strong> Ứng dụng giao tiếp trực tiếp với API thời tiết, không qua máy chủ
+                    trung gian nào của Zerivon Labs.</li>
+                <li><strong>Android Sandbox:</strong> Dữ liệu cục bộ được lưu trong vùng nhớ riêng của ứng dụng, không
+                    thể bị ứng dụng khác truy cập.</li>
+            </ul>
+        </section>
+
+        <!-- 9. QUYỀN NGƯỜI DÙNG -->
+        <section class="section" id="section-9">
+            <h2><span class="num">09</span> Quyền của Người dùng</h2>
+            <p>Theo GDPR, CCPA và Luật An ninh mạng Việt Nam, Bạn có các quyền sau:</p>
+            <ul>
+                <li><strong>Quyền được biết:</strong> Chúng tôi thu thập gì — và câu trả lời là: không gì cả.</li>
+                <li><strong>Quyền truy cập:</strong> Không có dữ liệu nào được thu thập nên không có dữ liệu để truy
+                    cập.</li>
+                <li><strong>Quyền xóa:</strong> Gỡ cài đặt ứng dụng hoặc xóa dữ liệu trong cài đặt hệ thống.</li>
+                <li><strong>Quyền từ chối:</strong> Toàn quyền từ chối cấp quyền vị trí và thông báo.</li>
+                <li><strong>Quyền di chuyển dữ liệu:</strong> Danh sách thành phố đã lưu hoàn toàn thuộc về Bạn.</li>
+            </ul>
+        </section>
+
+        <!-- 10. THAY ĐỔI -->
+        <section class="section" id="section-10">
+            <h2><span class="num">10</span> Thay đổi Chính sách</h2>
+            <p>Chúng tôi có thể cập nhật Chính sách Bảo mật này. Khi có thay đổi quan trọng:</p>
+            <ul>
+                <li>Ngày "Cập nhật lần cuối" ở đầu trang sẽ được thay đổi.</li>
+                <li>Nếu thay đổi liên quan đến thu thập dữ liệu mới, chúng tôi sẽ thông báo trong ứng dụng và yêu cầu sự
+                    đồng ý của Bạn trước khi áp dụng.</li>
+            </ul>
+        </section>
+
+        <!-- 11. LIÊN HỆ -->
+        <section class="section" id="section-11">
+            <h2><span class="num">11</span> Liên hệ</h2>
+            <p>Nếu Bạn có câu hỏi hoặc yêu cầu liên quan đến Chính sách Bảo mật này, vui lòng liên hệ:</p>
+            <div class="contact-block">
+                <div class="contact-row"><span class="label-text">Công ty</span> <strong>Zerivon Labs</strong></div>
+                <div class="contact-row"><span class="label-text">Email</span> <a
+                        href="mailto:Zerivonlabs@gmail.com">Zerivonlabs@gmail.com</a></div>
+                <div class="contact-row"><span class="label-text">Ứng dụng</span> SunBox Weather</div>
+            </div>
+            <p>Chúng tôi cam kết phản hồi mọi yêu cầu trong vòng <strong>48 giờ</strong> kể từ khi nhận được email.</p>
+        </section>
+
+        <!-- FOOTER -->
+        <footer class="footer">
+            <p><strong>© 2026 Zerivon Labs</strong> · Mọi quyền được bảo lưu.</p>
+            <p style="margin-top: 6px;"><a href="mailto:Zerivonlabs@gmail.com"
+                    style="color: #3b44f6; text-decoration: none;">Zerivonlabs@gmail.com</a></p>
+        </footer>
 
     </div>
-
-    <script>
-        // ═══════════ SCROLL PROGRESS ═══════════
-        const progressBar = document.getElementById('scrollProgress');
-        window.addEventListener('scroll', () => {
-            const scrollTop = document.documentElement.scrollTop;
-            const scrollHeight = document.documentElement.scrollHeight - document.documentElement.clientHeight;
-            progressBar.style.width = (scrollTop / scrollHeight * 100) + '%';
-        });
-
-        // ═══════════ SCROLL REVEAL ═══════════
-        const observer = new IntersectionObserver((entries) => {
-            entries.forEach((entry, index) => {
-                if (entry.isIntersecting) {
-                    setTimeout(() => {
-                        entry.target.classList.add('visible');
-                    }, index * 80);
-                    observer.unobserve(entry.target);
-                }
-            });
-        }, { threshold: 0.1, rootMargin: '0px 0px -40px 0px' });
-
-        document.querySelectorAll('.glass-card').forEach(card => observer.observe(card));
-
-        // ═══════════ PARTICLES ═══════════
-        const particlesContainer = document.getElementById('particles');
-        const colors = ['#6366f1', '#8b5cf6', '#a78bfa', '#818cf8', '#4ade80', '#38bdf8'];
-        for (let i = 0; i < 30; i++) {
-            const p = document.createElement('div');
-            p.className = 'particle';
-            const size = Math.random() * 4 + 2;
-            p.style.cssText = `
-            width: ${size}px; height: ${size}px;
-            left: ${Math.random() * 100}%;
-            background: ${colors[Math.floor(Math.random() * colors.length)]};
-            animation-duration: ${Math.random() * 15 + 10}s;
-            animation-delay: ${Math.random() * 10}s;
-        `;
-            particlesContainer.appendChild(p);
-        }
-
-        // ═══════════ 3D TILT ON CARDS ═══════════
-        document.querySelectorAll('.glass-card').forEach(card => {
-            card.addEventListener('mousemove', (e) => {
-                const rect = card.getBoundingClientRect();
-                const x = e.clientX - rect.left;
-                const y = e.clientY - rect.top;
-                const centerX = rect.width / 2;
-                const centerY = rect.height / 2;
-                const rotateX = (y - centerY) / centerY * -3;
-                const rotateY = (x - centerX) / centerX * 3;
-                card.style.transform = `perspective(800px) rotateX(${rotateX}deg) rotateY(${rotateY}deg) translateY(-4px)`;
-            });
-            card.addEventListener('mouseleave', () => {
-                card.style.transform = 'perspective(800px) rotateX(0) rotateY(0) translateY(0)';
-            });
-        });
-    </script>
 
 </body>
 
